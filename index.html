@@ -3,331 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassin Ayman - Engineering Portfolio</title>
+    <title>Yassin Ayman | Mechatronics Systems Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* CORE CONFIGURATION */
-        * { box-sizing: border-box; }
-        body {
-            background-color: #050508;
-            display: grid;
-            gap: 50px;
-            grid-template-columns: 1fr;
-            margin: 0;
-            min-height: 100vh;
-            padding: 60px 0;
-            place-items: center;
+        :root {
+            --bg-main: #030305;
+            --bg-card: rgba(13, 17, 23, 0.7);
+            --accent-cyan: #00f3ff;
+            --accent-blue: #0066ff;
+            --text-primary: #ffffff;
+            --text-secondary: #8b9bb4;
+            --border-glow: rgba(0, 243, 255, 0.15);
         }
 
-        .slide-container {
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* DEEP SPACE BACKGROUND INTERACTION */
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        /* PRESENTATION STAGE FRAMEWORK */
+        .presentation-stage {
             width: 1280px;
             height: 720px;
-            background-color: #0b0c10;
-            color: #c5a880; 
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 50%), #07090e;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            position: relative;
+            z-index: 10;
             overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.9);
+            display: flex;
+        }
+
+        /* DEPLOYED TRACKING SYSTEM LINK */
+        .slide-track {
+            display: flex;
+            width: 700%; /* Total number of slides x 100% */
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            flex-shrink: 0;
+            padding: 60px 80px;
             position: relative;
             display: flex;
             flex-direction: column;
-            padding: 65px;
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8);
-            border: 1px solid #1f232b;
+            justify-content: space-between;
         }
 
-        /* PREMIUM CORNER ACCENTS */
-        .slide-container::before {
-            content: ''; position: absolute; top: 25px; left: 25px; width: 15px; height: 15px;
-            border-top: 2px solid #45f3ff; border-left: 2px solid #45f3ff; opacity: 0.4;
-        }
-        .slide-container::after {
-            content: ''; position: absolute; bottom: 25px; right: 25px; width: 15px; height: 15px;
-            border-bottom: 2px solid #45f3ff; border-right: 2px solid #45f3ff; opacity: 0.4;
-        }
-
-        /* TYPOGRAPHY OVERRIDE */
-        h1, h2, h3 { font-family: 'Cinzel', serif; margin: 0; font-weight: 700; letter-spacing: 2px; }
-        
-        h1 { font-size: 64px; line-height: 1.1; color: #ffffff; text-align: center; }
-        h1 span { color: #45f3ff; text-shadow: 0 0 20px rgba(69, 243, 255, 0.2); }
-
-        .slide-title {
-            font-size: 42px;
-            margin-bottom: 40px;
-            text-align: left;
-            width: 100%;
-            color: #ffffff;
-            border-bottom: 1px solid #1f232b;
+        /* HEADER FRAME */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding-bottom: 15px;
         }
-        .slide-title span { color: #45f3ff; font-family: 'Plus Jakarta Sans'; font-size: 18px; display: block; letter-spacing: 4px; margin-bottom: 5px;}
-
-        p, li { font-size: 18px; line-height: 1.6; color: #a4b3c6; margin: 0; }
-        strong { color: #ffffff; font-weight: 600; }
-
-        /* GRID LAYOUTS */
-        .content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
-        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: center; }
-        
-        .dark-card { 
-            background: #11141a; 
-            padding: 30px; 
-            border-radius: 4px; 
-            border-left: 3px solid #45f3ff;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+        .slide-tag {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-cyan);
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
-        .dark-card h3 { color: #ffffff; font-size: 22px; margin-bottom: 15px; font-family: 'Plus Jakarta Sans'; letter-spacing: 1px;}
-
-        .image-wrapper { 
-            width: 100%; 
-            height: 380px; 
-            border-radius: 4px; 
-            overflow: hidden; 
-            border: 1px solid #242936;
-            background: #08090d;
+        .slide-num {
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 18px;
         }
-        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .image-wrapper.contain img { object-fit: contain; padding: 20px; }
 
-        /* INTRO & SECTION SEGUE LAYOUTS */
-        .center-layout { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;}
-        .center-layout p.tagline { font-size: 20px; color: #45f3ff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; }
-        
-        /* TECHNICAL BADGES */
-        .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; width: 100%; }
-        .badge-box { background: #11141a; border: 1px solid #1f232b; padding: 20px; text-align: center; border-radius: 4px; }
-        .badge-box h4 { margin: 0 0 8px 0; color: #45f3ff; font-size: 20px; font-family: 'Plus Jakarta Sans'; }
-        .badge-box p { font-size: 14px; color: #8e9cae; }
+        /* TYPOGRAPHY MATRIX */
+        h1, h2 { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: -1px; }
+        h1 { font-size: 56px; line-height: 1.1; }
+        h1 span { color: transparent; -webkit-text-stroke: 1px var(--accent-cyan); }
+        h2 { font-size: 32px; margin-bottom: 25px; color: #ffffff; }
 
-        /* CODE BOXES */
-        .code-box {
-            background: #07080b;
-            border: 1px solid #1f232b;
-            padding: 25px;
-            font-family: 'Courier New', Courier, monospace;
-            color: #45f3ff;
-            font-size: 15px;
-            display: block;
+        /* UPGRADED CARD SYSTEM */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+            opacity: 0.7;
+        }
+
+        /* LAYOUT ENGINES */
+        .grid-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; height: 100%; }
+        .media-viewer {
+            width: 100%;
+            height: 380px;
+            background: #090c15;
+            border: 1px dashed rgba(0, 243, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .media-viewer i { font-size: 48px; color: rgba(0, 243, 255, 0.3); margin-bottom: 15px; }
+
+        /* BUTTON INTERFACES */
+        .nav-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 80px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-main);
+            box-shadow: 0 0 15px var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        /* METRIC MATRIX BADGES */
+        .metrics-bar { display: flex; gap: 20px; margin-top: 25px; }
+        .metric-badge {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            padding: 10px 15px;
             border-radius: 4px;
-            line-height: 1.4;
-            white-space: pre;
-            overflow-x: auto;
+            font-size: 13px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-cyan);
+        }
+
+        .code-display {
+            background: #020408;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #a2b7db;
+            font-size: 14px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
-<!-- SLIDE 1: PRESTIGIOUS LOGICAL GATEWAY -->
-<div class="slide-container" id="slide1">
-    <div class="center-layout">
-        <p class="tagline">Mechatronics Portfolio & Systems Engineering</p>
-        <h1>Yassin <span>Ayman</span></h1>
-        <div style="width: 80px; height: 2px; background: #45f3ff; margin: 30px 0;"></div>
-        <p style="color: #8e9cae; font-size: 22px; max-width: 700px;">The Mechanical Design, Material Optimization, and Embedded Logic Lifecycle Framework</p>
-    </div>
-</div>
+<div class="bg-grid"></div>
 
-<!-- SLIDE 2: THE LIFECYCLE STATEMENT -->
-<div class="slide-container" id="slide2">
-    <h2 class="slide-title"><span>01 / CORE PHILOSOPHY</span>The Deterministic Engineering Matrix</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div>
-                <p style="font-size: 20px; color: #ffffff; margin-bottom: 25px;">Design is empty without complete physical and analytical proofing.</p>
-                <p>My work eliminates guessing parameters. By coupling verified 3D Solid Modeling with advanced Finite Element Analysis (FEA) and lower-level logic architecture, I engineer components that strictly obey physical limitations and international industrial directives.</p>
-            </div>
-            <div class="dark-card">
-                <h3>Integrated Technical Stack</h3>
-                <p style="font-size: 16px; margin-bottom: 10px;">• <strong>Synthesis:</strong> SOLIDWORKS (CSWP Pro Certified)</p>
-                <p style="font-size: 16px; margin-bottom: 10px;">• <strong>Simulation:</strong> ANSYS Workbench (Static Structural FEM)</p>
-                <p style="font-size: 16px; margin-bottom: 10px;">• <strong>Execution:</strong> Industrial CNC Lathe G-Code Optimization</p>
-                <p style="font-size: 16px;">• <strong>Computation:</strong> Low-Level Embedded C Hardware Interfacing</p>
-            </div>
-        </div>
-        <div class="badge-grid">
-            <div class="badge-box"><h4>CSWP</h4><p>Certified Professional</p></div>
-            <div class="badge-box"><h4>FEM</h4><p>Structural Optimization</p></div>
-            <div class="badge-box"><h4>ECP</h4><p>Statutory Code Auditor</p></div>
-            <div class="badge-box"><h4>EMBEDDED C</h4><p>Terminal Infrastructure</p></div>
-        </div>
+<div class="presentation-stage">
+    
+    <div class="nav-controls">
+        <div class="nav-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="nav-btn" onclick="moveSlide(1)"><i class="fa-solid fa-arrow-right"></i></div>
     </div>
-</div>
 
-<!-- SLIDE 3: MECHANICAL SEGUE -->
-<div class="slide-container" id="slide3">
-    <div class="center-layout">
-        <p class="tagline">Phase I: Spatial Synthesis</p>
-        <h2>Kinematics & Assembly Architecture</h2>
-        <div style="width: 50px; height: 1px; background: #45f3ff; margin: 20px 0;"></div>
-        <p style="max-width: 650px; color: #8e9cae;">Developing zero-interference mechanical configurations from a raw canvas down to strict tolerance alignments.</p>
-    </div>
-</div>
+    <div class="slide-track" id="slideTrack">
 
-<!-- SLIDE 4: MECHANICAL ROBOTIC ARM -->
-<div class="slide-container" id="slide4">
-    <h2 class="slide-title"><span>PHASE I / PROJECT 01</span>4-DOF Articulated Robotic Synthesis</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div>
-                <div class="dark-card" style="margin-bottom: 25px;">
-                    <h3>The Geometric Blueprint</h3>
-                    <p>Designed a multi-axis articulated arm configuration entirely from scratch, utilizing precise linkage synthesis parameters to fulfill specific work envelope requirements.</p>
-                </div>
-                <ul style="padding-left: 20px; color: #a4b3c6;">
-                    <li style="margin-bottom: 10px;">Evaluated multi-component tolerance stack-ups.</li>
-                    <li style="margin-bottom: 10px;">Verified safe clearance limits during real-time movement.</li>
-                    <li>Plotted acceleration curves within CAD environment.</li>
-                </ul>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">Systems Synthesis Infrastructure</span>
+                <span class="slide-num">01</span>
             </div>
-            <div class="image-wrapper contain">
-                <div style="color: #45f3ff; text-align: center; padding-top: 150px; font-size: 14px;">[Place Your Robotic Arm Renders / Photos Here]</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SLIDE 5: MECHANICAL INDUSTRIAL GEARBOX -->
-<div class="slide-container" id="slide5">
-    <h2 class="slide-title"><span>PHASE I / PROJECT 02</span>Multi-Stage Industrial Gearbox Dynamics</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div class="image-wrapper contain">
-                <div style="color: #45f3ff; text-align: center; padding-top: 150px; font-size: 14px;">[Place Your Gearbox Animation / Images Here]</div>
-            </div>
-            <div>
-                <div class="dark-card" style="margin-bottom: 25px;">
-                    <h3>Rotational Precision & Fitting</h3>
-                    <p>Engineered a multi-stage transmission cluster demanding extreme mating accuracy. Applied specific geometric dimensioning constraints to prevent axis deviation.</p>
-                </div>
-                <p style="font-size: 16px; color: #8e9cae;">
-                    <strong>Tolerance Strategy:</strong> Standardized housing walls and internal shaft shoulders to an explicit <strong>+0.02 mm margin</strong> to fully absorb high backlash factors and eliminate axial component binding.
+            <div style="margin: auto 0;">
+                <h1 style="margin-bottom: 20px;">YASSIN <span>AYMAN</span></h1>
+                <p style="font-size: 20px; color: var(--text-secondary); max-width: 800px; font-weight: 300; line-height: 1.6;">
+                    Mechatronics Portfolio detailing computational mechanics, physical material boundaries verification, and bare-metal embedded subsystem compilation.
                 </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SLIDE 6: OPTIMIZATION SEGUE -->
-<div class="slide-container" id="slide6">
-    <div class="center-layout">
-        <p class="tagline">Phase II: Structural Optimization</p>
-        <h2>Finite Element Analysis & Code Compliance</h2>
-        <div style="width: 50px; height: 1px; background: #45f3ff; margin: 20px 0;"></div>
-        <p style="max-width: 650px; color: #8e9cae;">Subjecting structural topology models to severe computational loading simulations governed by regional safety legislation.</p>
-    </div>
-</div>
-
-<!-- SLIDE 7: SOLAR PV ANSYS OPTIMIZATION -->
-<div class="slide-container" id="slide7">
-    <h2 class="slide-title"><span>PHASE II / STUDY 01</span>ANSYS FEM Optimization of Utility Solar Topologies</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div>
-                <div class="dark-card" style="margin-bottom: 2px;">
-                    <h3>Parametric Mass Reduction</h3>
-                    <p style="font-size: 16px;">Executed rigorous structural weight optimization routines inside ANSYS Workbench to reduce raw steel expenditures on multi-panel utility frames while tracking elastic deformation thresholds.</p>
+                <div class="metrics-bar">
+                    <div class="metric-badge"><i class="fa-solid fa-certificate"></i> CSWP Certified</div>
+                    <div class="metric-badge"><i class="fa-solid fa-microchip"></i> Embedded Firmware</div>
+                    <div class="metric-badge"><i class="fa-solid fa-chart-line"></i> ANSYS FEM</div>
                 </div>
-                <p style="font-size: 15px; color: #8e9cae; margin-top: 15px;">
-                    <strong>Material Matrix Validation:</strong> Checked performance trade-offs across <strong>S235JR, S275JR, and S355JR structural steel</strong> grades. Optimized frame profile thicknesses between <strong>2.5 mm and 4 mm</strong> paired with hot-dip galvanization parameters to guarantee outdoor survival.
-                </p>
             </div>
-            <div class="image-wrapper contain">
-                <div style="color: #45f3ff; text-align: center; padding-top: 150px; font-size: 14px;">[Place Your ANSYS Workbench Schematics / Response Surface Data Plots Here]</div>
-            </div>
+            <div><p style="color: rgba(255,255,255,0.2); font-size: 12px; letter-spacing: 2px;">SECURE RUNTIME PROTOCOL // ACTIVE</p></div>
         </div>
-    </div>
-</div>
 
-<!-- SLIDE 8: STATUTORY CODE COMPLIANCE -->
-<div class="slide-container" id="slide8">
-    <h2 class="slide-title"><span>PHASE II / REGULATORY</span>Statutory Compliance Framework (ECP Directives)</h2>
-    <div class="content-area">
-        <p style="margin-bottom: 30px; color: #ffffff; font-size: 19px;">Aligning structural physics optimization with domestic structural verification laws in Egypt.</p>
-        <div class="two-column">
-            <div class="dark-card">
-                <h3>ECP 205 — Structural Steelwork</h3>
-                <p style="font-size: 16px;">Audited geometric design safety profiles to match ultimate limit state calculations dictated by the Egyptian Code for Steel Construction, verifying stress ratios under extreme yield margins.</p>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">Spatial Synthesis / Phase I</span>
+                <span class="slide-num">02</span>
             </div>
-            <div class="dark-card">
-                <h3>ECP 201 — Dynamic Wind Load profiles</h3>
-                <p style="font-size: 16px;">Calculated static equivalent forces for wind velocity ranges stretching between <strong>140 and 160 km/h</strong>, ensuring foundational support anchor tracking prevents structure overturn.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SLIDE 9: EMBEDDED SOFTWARE SEGUE -->
-<div class="slide-container" id="slide9">
-    <div class="center-layout">
-        <p class="tagline">Phase III: Digital Computation</p>
-        <h2>Low-Level Algorithms & Peripheral Integration</h2>
-        <div style="width: 50px; height: 1px; background: #45f3ff; margin: 20px 0;"></div>
-        <p style="max-width: 650px; color: #8e9cae;">Developing persistent file structures and terminal interface loops to log hardware data transactions.</p>
-    </div>
-</div>
-
-<!-- SLIDE 10: C DATABASE SYSTEM & QR SCANNER -->
-<div class="slide-container" id="slide10">
-    <h2 class="slide-title"><span>PHASE III / EMBEDDED C</span>QR Data Terminal & Array System</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div>
-                <div class="dark-card" style="margin-bottom: 20px;">
-                    <h3>HID Terminal Emulation Integration</h3>
-                    <p style="font-size: 16px;">Engineered a functional student database tracker using standard C memory mapping. Connected directly to an external smartphone application acting as a high-speed QR barcode reader.</p>
+            <div class="grid-split">
+                <div class="glass-card">
+                    <h2>4-DOF Articulated Kinematic Assembly</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+                        Designed completely from the ground up, avoiding prefabricated configurations. Built parametric vector relations to trace spatial coordinates and prevent linkage point intersections across high acceleration profiles.
+                    </p>
+                    <div class="code-display" style="font-size: 13px;">
+                        // Tolerance Vector Mapping Margins<br>
+                        Assembly Stack-up Tolerance: &plusmn;0.05 mm<br>
+                        Motion Boundary Clearance Check: Verified
+                    </div>
                 </div>
-                <p style="font-size: 15px; color: #8e9cae;">
-                    The mobile camera application decodes physical data matrixes and immediately inputs text streams into an infinite execution polling loop via terminal keyboard emulation, invoking timestamp capture subroutines instantly.
-                </p>
+                <div class="media-viewer" id="media-robotic">
+                    <i class="fa-solid fa-robot"></i>
+                    <p style="color: var(--text-secondary); font-size: 14px;">[Media Placeholder: Drag Robotic Arm Render Here]</p>
+                </div>
             </div>
-            <div class="code-box">
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">Rotational Kinematics / Phase I</span>
+                <span class="slide-num">03</span>
+            </div>
+            <div class="grid-split">
+                <div class="media-viewer" id="media-gearbox">
+                    <i class="fa-solid fa-gears"></i>
+                    <p style="color: var(--text-secondary); font-size: 14px;">[Media Placeholder: Drag Gearbox Assembly Here]</p>
+                </div>
+                <div class="glass-card">
+                    <h2>Multi-Stage Industrial Gearbox</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 15px;">
+                        Multi-axis mechanical reduction cluster built for smooth power transformation curves. Used deliberate spatial planning constraints to ensure perfect shaft intersection alignments under heavy torque parameters.
+                    </p>
+                    <p style="color: var(--accent-cyan); font-size: 15px; font-weight: 600;">
+                        Precision Strategy: Applied custom limits of +0.02 mm onto assembly wall links to counteract system backlash vectors.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">FEA Analysis / Phase II</span>
+                <span class="slide-num">04</span>
+            </div>
+            <div class="grid-split">
+                <div class="glass-card">
+                    <h2>Utility Solar Structural Topology Optimization</h2>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.6; margin-bottom: 15px;">
+                        Conducted complete mass optimization routines within ANSYS Workbench. Analyzed structural load distributions over frame cross-sections to find the ideal weight-to-strength ratios under extreme outdoor conditions.
+                    </p>
+                    <div class="code-display" style="font-size: 12px; font-family: sans-serif;">
+                        <strong>• Tested Steel Matrices:</strong> S235JR, S275JR, S355JR Structural Steel<br>
+                        <strong>• Geometric Tuning:</strong> Parametric Profiles ranging from 2.5 mm to 4.0 mm<br>
+                        <strong>• Environmental Margin:</strong> Hot-Dip Galvanization Depth Calculations
+                    </div>
+                </div>
+                <div class="media-viewer" id="media-ansys">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <p style="color: var(--text-secondary); font-size: 14px;">[Media Placeholder: Drag ANSYS Setup Image Here]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">Statutory Code Alignment / Phase II</span>
+                <span class="slide-num">05</span>
+            </div>
+            <div class="grid-split">
+                <div class="glass-card" style="border-left: 3px solid #ffaa00;">
+                    <h2 style="font-size: 24px;"><i class="fa-solid fa-gavel"></i> ECP 205 Compliance Audit</h2>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">
+                        Evaluated safety margins against limit-state criteria inside the <strong>Egyptian Code for Steel Construction (ECP 205)</strong>, verifying that structural connections maintain safe behavior under critical ultimate loading conditions.
+                    </p>
+                </div>
+                <div class="glass-card" style="border-left: 3px solid var(--accent-cyan);">
+                    <h2 style="font-size: 24px;"><i class="fa-solid fa-wind"></i> ECP 201 Aerodynamic Loading</h2>
+                    <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.6;">
+                        Calculated static equivalent pressure fields for wind velocity margins spiking between <strong>140 km/h and 160 km/h</strong> across regional Egyptian terrains, securing foundations against sliding and lifting failures.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-tag">Bare-Metal Firmware / Phase III</span>
+                <span class="slide-num">06</span>
+            </div>
+            <div class="grid-split">
+                <div class="glass-card">
+                    <h2>QR Data Processing Hardware Core</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 15px;">
+                        Designed a functional data compilation program utilizing bare-metal memory structures. Interfaces seamlessly with automated camera arrays acting as high-speed data scanner systems.
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 14px;">
+                        The firmware terminal monitors inputs from automated camera arrays via serial interface execution, decoding streams directly into structured memory registers.
+                    </p>
+                </div>
+                <div class="code-display" style="font-size: 12px;">
 typedef struct {
     char id[MAX_FIELD_LEN];
     char name[MAX_FIELD_LEN];
     char dept[MAX_FIELD_LEN];
 } Student;
 
-// Persistent Data Handling Routine
+// Persistent Flash Storage Writer Block
 FILE *f = fopen(path, "a");
-fprintf(f, "Present: %s | %s\n", s->id, dt);
-fclose(f);</div>
-        </div>
-    </div>
-</div>
-
-<!-- SLIDE 11: MANUFACTURING RESOLUTION -->
-<div class="slide-container" id="slide11">
-    <h2 class="slide-title"><span>04 / MANUFACTURING</span>The Moment of Reality Execution</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div class="image-wrapper contain">
-                <div style="color: #45f3ff; text-align: center; padding-top: 150px; font-size: 14px;">[Place Your GitHub Profile Contribution Map Screen Here]</div>
+if (f != NULL) {
+    fprintf(f, "ID: %s | TS: %s\n", s->id, dt);
+    fclose(f);
+}</div>
             </div>
-            <div>
-                <h3>Subtractive & Version Control Resolution</h3>
-                <p style="margin-bottom: 20px;">The absolute resolution of my engineering process happens when digital models face physical execution bounds. I manage deployment tracking using rigorous version controls.</p>
-                <div class="dark-card">
-                    <p style="font-size: 16px; color: #45f3ff;"><strong>Version Management Matrix:</strong> Utilizing structured commit loops on GitHub to isolate syntax errors, test iterative database refactoring scripts, and handle multi-source data integrity maps.</p>
+        </div>
+
+        <div class="slide" style="background: radial-gradient(circle at center, #0e1322 0%, #07090e 100%);">
+            <div class="slide-header">
+                <span class="slide-tag">Secure Link Termination</span>
+                <span class="slide-num">07</span>
+            </div>
+            <div style="text-align: center; margin: auto 0;">
+                <h2 style="font-size: 44px; margin-bottom: 10px;">INBOUND GATEWAY SECURED</h2>
+                <p style="color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; letter-spacing: 3px; font-size: 16px; margin-bottom: 40px;">
+                    Yassin Ayman // Mechatronics Systems Engineer
+                </p>
+                <div style="display: inline-flex; gap: 40px; background: rgba(0,0,0,0.3); padding: 20px 40px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--text-secondary);"><i class="fa-solid fa-envelope" style="color: var(--accent-cyan);"></i> yassin.ayman@email.com</span>
+                    <span style="color: var(--text-secondary);"><i class="fa-brands fa-linkedin" style="color: var(--accent-cyan);"></i> linkedin.com/in/yassin-ayman</span>
                 </div>
             </div>
+            <div><p style="color: rgba(255,255,255,0.1); font-size: 11px; text-align: center;">SYSTEM DESIGNS COMPILED &bull; REVISION 2.0.26</p></div>
         </div>
+
     </div>
 </div>
 
-<!-- SLIDE 12: EXPERT CONTACT SUMMARY -->
-<div class="slide-container" id="slide12" style="background: radial-gradient(circle at center, #11141a 0%, #050508 100%);">
-    <div class="center-layout">
-        <h2 style="font-size: 48px; color: #ffffff; margin-bottom: 15px;">Initiate Collaboration</h2>
-        <p style="color: #45f3ff; font-size: 20px; font-family: 'Plus Jakarta Sans'; letter-spacing: 2px;">Yassin Ayman | Mechatronics Systems Engineer</p>
-        <div style="width: 100px; height: 1px; background: #1f232b; margin: 35px 0;"></div>
-        <div style="display: flex; gap: 50px; font-size: 18px;">
-            <p><i class="fa-solid fa-envelope" style="color: #45f3ff; margin-right: 12px;"></i> yassin.ayman@email.com</p>
-            <p><i class="fa-brands fa-linkedin" style="color: #45f3ff; margin-right: 12px;"></i> linkedin.com/in/yassin-ayman</p>
-        </div>
-    </div>
-</div>
+<script>
+    let currentSlide = 0;
+    const totalSlides = 7;
+    const track = document.getElementById('slideTrack');
+
+    function moveSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = 0;
+        if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+        
+        let amountToMove = -currentSlide * 1280;
+        track.style.transform = `translateX(${amountToMove}px)`;
+    }
+</script>
 
 </body>
 </html>
