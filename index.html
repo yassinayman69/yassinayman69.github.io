@@ -3,67 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassin Ayman | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Yassin Ayman | Mechatronics Dossier</title>
     <style>
-        :root { --bg-main: #030305; --accent-cyan: #00f3ff; --text-secondary: #8b9bb4; }
-        body { background-color: var(--bg-main); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 20px; }
-        
-        .presentation-stage { width: 100%; max-width: 1000px; margin: auto; border: 1px solid #222; padding: 40px; border-radius: 12px; }
-        
         .slide { display: none; }
-        .slide.active { display: block; }
-        
-        .action-button { background: #111; color: #fff; border: 1px solid #444; padding: 10px 20px; cursor: pointer; }
-        .action-button:hover { border-color: var(--accent-cyan); }
+        .slide.active { display: block !important; }
     </style>
 </head>
 <body>
 
-<div class="presentation-stage">
-    
-    <div class="slide active">
-        <h1>YASSIN AYMAN</h1>
-        <p>Mechatronics Systems Engineer.</p>
+    <div class="presentation-stage">
+        <div class="slide active"><h1>YASSIN AYMAN</h1></div>
+        <div class="slide"><h2>Multi-Stage Kinematic Gearbox</h2></div>
+        <div class="slide"><h2>4-DOF Robotic Arm</h2></div>
+        <div class="slide"><h2>Solar Panel Structure</h2></div>
+        <div class="slide"><h2>C-Code Terminal</h2></div>
+
+        <div class="footer-navigation">
+            <button class="action-button" onclick="navigateDeck(-1)">PREV</button>
+            <button class="action-button" onclick="navigateDeck(1)">NEXT</button>
+        </div>
     </div>
 
-    <div class="slide">
-        <h2>Multi-Stage Kinematic Gearbox</h2>
-        <p>Parametric CAD & CNC validation.</p>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.slidePointer = 0;
+            window.deckSlides = document.querySelectorAll('.slide');
+        });
 
-    <div class="slide">
-        <h2>4-DOF Robotic Arm</h2>
-        <p>Freelance design & simulation.</p>
-    </div>
-
-    <div class="slide">
-        <h2>Solar Structure</h2>
-        <p>Structural integration & compliance.</p>
-    </div>
-
-    <div class="slide">
-        <h2>C-Code Terminal</h2>
-        <p>Data acquisition & absence tracking.</p>
-    </div>
-
-    <div style="margin-top: 30px;">
-        <button class="action-button" onclick="navigateDeck(-1)">PREV</button>
-        <button class="action-button" onclick="navigateDeck(1)">NEXT</button>
-    </div>
-</div>
-
-<script>
-    let slidePointer = 0;
-    const deckSlides = document.querySelectorAll('.slide');
-
-    function navigateDeck(step) {
-        deckSlides[slidePointer].classList.remove('active');
-        slidePointer = (slidePointer + step + deckSlides.length) % deckSlides.length;
-        deckSlides[slidePointer].classList.add('active');
-    }
-</script>
-
+        function navigateDeck(step) {
+            // Hide current
+            deckSlides[slidePointer].classList.remove('active');
+            
+            // Calculate new
+            slidePointer = (slidePointer + step + deckSlides.length) % deckSlides.length;
+            
+            // Show new
+            deckSlides[slidePointer].classList.add('active');
+            console.log("Showing slide index:", slidePointer);
+        }
+    </script>
 </body>
 </html>
