@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yassin Ayman | Mechatronics Systems Dossier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { 
+            --bg-main: #030305; 
+            --bg-card: rgba(11, 15, 23, 0.85); 
+            --accent-cyan: #00f3ff; 
+            --text-primary: #ffffff; 
+            --text-secondary: #8b9bb4; 
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-primary); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+            overflow-x: hidden; 
+        }
+        
+        .bg-grid { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background-image: linear-gradient(rgba(0, 243, 255, 0.015) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.015) 1px, transparent 1px); 
+            background-size: 50px 50px; z-index: 1; 
+        }
+        
+        .stage { 
+            width: 100%; max-width: 1100px; min-height: 650px; 
+            background: #06090e; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 16px; padding: 45px; position: relative; z-index: 10; 
+            display: flex; flex-direction: column; justify-content: space-between; 
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85);
+        }
+        
+        .slide { display: none; animation: slideFade 0.4s ease forwards; }
+        .slide.active { display: block !important; }
+        
+        @keyframes slideFade { 
+            from { opacity: 0; transform: translateY(8px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        .slide-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 18px; margin-bottom: 30px;
+        }
+        
+        .slide-tag { font-family: 'Orbitron', sans-serif; color: var(--accent-cyan); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; }
+        .slide-num { font-family: 'Orbitron', sans-serif; color: rgba(255, 255, 255, 0.2); font-size: 15px; }
+
+        h1, h2 { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+        h1 { font-size: 48px; line-height: 1.1; margin-bottom: 15px; letter-spacing: -1px; }
+        h1 span { color: transparent; -webkit-text-stroke: 1px var(--accent-cyan); }
+        h2 { font-size: 28px; color: #ffffff; margin-bottom: 20px; }
+        
+        .grid-split { display: grid; grid-template-columns: 1fr; gap: 35px; align-items: start; }
+        @media (min-width: 900px) { .grid-split { grid-template-columns: 1.1fr 0.9fr; } }
+        
+        .glass-card { 
+            background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.04); 
+            border-radius: 12px; padding: 32px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+        }
+        
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+        }
+        
+        .data-label-header { font-family: 'Orbitron', sans-serif; font-size: 12px; color: var(--accent-cyan); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;}
+        .data-paragraph { color: var(--text-secondary); font-size: 14.5px; line-height: 1.6; margin-bottom: 22px; font-weight: 300; }
+        
+        .tech-list { list-style: none; }
+        .tech-list li { margin-bottom: 12px; font-size: 14px; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 10px; }
+        .tech-list li i { color: var(--accent-cyan); margin-top: 4px; font-size: 10px; }
+
+        .media-frame {
+            width: 100%; background: #070a10; border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px; overflow: hidden; position: relative; display: flex; flex-direction: column;
+        }
+        
+        .media-frame img { width: 100%; height: auto; display: block; object-fit: contain; background: #070a10; }
+        
+        .media-caption {
+            background: rgba(7, 10, 16, 0.9); padding: 10px 15px; font-size: 12px;
+            color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Orbitron', sans-serif; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;
+        }
+
+        .metrics-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+        
+        .badge-node {
+            background: rgba(0, 243, 255, 0.03); border: 1px solid rgba(0, 243, 255, 0.08);
+            padding: 10px 16px; border-radius: 6px; font-size: 12px; font-family: 'Orbitron', sans-serif; color: var(--accent-cyan);
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+
+        .footer-navigation {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px;
+        }
+        
+        .control-cluster { display: flex; gap: 15px; }
+        
+        .action-button {
+            padding: 12px 24px; border-radius: 6px; background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08); color: #ffffff; font-family: 'Orbitron', sans-serif;
+            font-size: 11px; cursor: pointer; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 10px; letter-spacing: 1px;
+        }
+        
+        .action-button:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 15px rgba(0,243,255,0.3); border-color: var(--accent-cyan); }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="stage">
+
+    <div class="slide active">
+        <div class="slide-header">
+            <span class="slide-tag">Systems Synthesis Infrastructure</span>
+            <span class="slide-num">01 / 06</span>
+        </div>
+        <div style="margin: auto 0; padding: 20px 0;">
+            <h1>YASSIN <span>AYMAN</span></h1>
+            <p style="font-size: 19px; color: var(--text-secondary); max-width: 800px; line-height: 1.6; font-weight: 300; margin-bottom: 10px;">
+                Mechatronics & Engineering Student at Suez Canal University. Specializing in parametric machine development, rotational kinematics, regulatory structure validation, and bare-metal embedded automation firmware.
+            </p>
+            <div class="metrics-row">
+                <div class="badge-node"><i class="fa-solid fa-shield-halved"></i> CSWA & CSWP Certified</div>
+                <div class="badge-node"><i class="fa-solid fa-microchip"></i> Automation Control (PLC/VFD)</div>
+                <div class="badge-node"><i class="fa-solid fa-car-side"></i> Formula Student '26</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <span class="slide-tag">Professional Background</span>
+            <span class="slide-num">02 / 06</span>
+        </div>
+        <div class="glass-card" style="margin-top: 0;">
+            <h2>Engineering Tenure & Training</h2>
+            <div class="data-label-header">Industry Integration</div>
+            <p class="data-paragraph">
+                A proven track record of applying mechatronic principles to real-world industrial and competitive environments.
+            </p>
+            <ul class="tech-list">
+                <li><i class="fa-solid fa-industry"></i> <strong>Mechanical Engineering Intern:</strong> Hands-on experience executing MEP, HVAC, and Firefighting specifications and structural requirements.</li>
+                <li><i class="fa-solid fa-bolt"></i> <strong>ABB ABBright Minds Training (2025):</strong> Completed rigorous process automation training modules and webinars focusing on modern industrial control systems.</li>
+                <li><i class="fa-solid fa-flag-checkered"></i> <strong>Formula Student 2026:</strong> Managing critical project timelines, design specifications, and mechanical integrations for competitive deployment.</li>
+                <li><i class="fa-solid fa-network-wired"></i> <strong>IEEE Student Branch:</strong> Active member of the IEEE Suez Canal University chapter, dedicated to advancing technological innovation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <span class="slide-tag">Rotational Power Transmission</span>
+            <span class="slide-num">03 / 06</span>
+        </div>
+        <div class="grid-split">
+            <div class="glass-card">
+                <h2>Multi-Stage Kinematic Gearbox</h2>
+                <div class="data-label-header">Execution & Validation</div>
+                <p class="data-paragraph">
+                    Engineered to address high-torque mechanical power transmission requirements. This project bridges the gap between digital modeling and physical manufacturing.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Advanced CAD Architecture:</strong> Modeled complex parametric gear trains with precision axial alignment using SOLIDWORKS.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Physical Build & Prototyping:</strong> Manufactured a working concept via CNC machining to physically assess and validate structural gear alignment patterns under dynamic load.</li>
+                </ul>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="media-frame">
+                    <img src="cadgearbox.png" alt="CAD Model">
+                    <div class="media-caption"><i class="fa-solid fa-computer"></i> CAD Parametric Assembly</div>
+                </div>
+                <div class="media-frame">
+                    <img src="realgearbox.png" alt="Real Build">
+                    <div class="media-caption"><i class="fa-solid fa-gears"></i> Physical CNC Build</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <span class="slide-tag">Kinematic Engineering (Freelance)</span>
+            <span class="slide-num">04 / 06</span>
+        </div>
+        <div class="grid-split">
+            <div class="glass-card">
+                <h2>4-DOF Articulated Robotic Arm</h2>
+                <div class="data-label-header">System Development</div>
+                <p class="data-paragraph">
+                    Freelance manipulator design. This is not a pre-built assembly—I drew the entire design from scratch and carried it through to the final motion study to ensure absolute positional tolerance.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-robot"></i> <strong>FEA Validation:</strong> Executed rigorous Finite Element Analysis directly on the waist link to prevent yielding under high dynamic acceleration and payload forces.</li>
+                    <li><i class="fa-solid fa-robot"></i> <strong>Kinematic Tracking:</strong> Evaluated multi-joint range of motion sequences to verify the 4 degrees of freedom functionality.</li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="robotarm.png" alt="4-DOF Robotic Arm CAD">
+                <div class="media-caption"><i class="fa-solid fa-computer"></i> SolidWorks 4-DOF Assembly</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <span class="slide-tag">Regulatory R&D Synthesis</span>
+            <span class="slide-num">05 / 06</span>
+        </div>
+        <div class="grid-split">
+            <div class="glass-card">
+                <h2>Solar Structural Integration</h2>
+                <div class="data-label-header">Regulatory Synthesis</div>
+                <p class="data-paragraph">
+                    Designed a utility-scale solar structure framework engineered for maximum environmental resilience and strict regulatory compliance.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-gavel"></i> <strong>Standard Compliance:</strong> Synthesized the framing geometry against ECP 205 (Steel Construction) codes to guarantee structural integrity.</li>
+                    <li><i class="fa-solid fa-wind"></i> <strong>Load Resistance:</strong> Optimized the chassis to safely resist maximum overturning moments and dynamic forces under 160 km/h regional wind speeds (ECP 201).</li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="solarpanel.png" alt="Solar Panel Mounting Structure Design">
+                <div class="media-caption"><i class="fa-solid fa-file-pdf"></i> CAD Structural Layout</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <span class="slide-tag">Bare-Metal C Firmware</span>
+            <span class="slide-num">06 / 06</span>
+        </div>
+        <div class="grid-split">
+            <div class="glass-card">
+                <h2>Data Acquisition Subsystem</h2>
+                <div class="data-label-header">Firmware Logic</div>
+                <p class="data-paragraph">
+                    Developed a highly functional bare-metal register terminal to manage high-efficiency peripheral data stream parsing and automated real-time attendance logging.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-code"></i> <strong>Dynamic Memory Allocation:</strong> The C-logic generates dedicated, unique text files per student ID directly into the system's memory array.</li>
+                    <li><i class="fa-solid fa-clock"></i> <strong>Real-Time Tracking:</strong> Engineered real-time timestamp generation that appends exact temporal data to individual attendance logs for accurate tracking.</li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="cproject.png" alt="Bare Metal Firmware Code">
+                <div class="media-caption"><i class="fa-solid fa-terminal"></i> Terminal Logic Execution</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-navigation">
+        <span style="font-size: 11px; color: rgba(255,255,255,0.15); font-family: 'Orbitron', sans-serif;">SYSTEM COMPILATION SECURE // REV 2026</span>
+        <div class="control-cluster">
+            <button class="action-button" onclick="navigateDeck(-1)"><i class="fa-solid fa-arrow-left"></i> PREV</button>
+            <button class="action-button" onclick="navigateDeck(1)">NEXT <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        window.slidePointer = 0;
+        window.deckSlides = document.querySelectorAll('.slide');
+    });
+
+    function navigateDeck(step) {
+        if (!window.deckSlides || window.deckSlides.length === 0) return;
+        
+        window.deckSlides[window.slidePointer].classList.remove('active');
+        window.slidePointer = (window.slidePointer + step + window.deckSlides.length) % window.deckSlides.length;
+        window.deckSlides[window.slidePointer].classList.add('active');
+    }
+</script>
+
+</body>
+</html>
