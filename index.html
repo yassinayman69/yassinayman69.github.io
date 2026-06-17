@@ -246,90 +246,152 @@
 
 <!-- 3. Projects Section -->
 <section id="projects" class="section-container">
-    <h2 class="section-title">Projects</h2>
-
-    <!-- Project 1 -->
-    <div class="grid-split">
-        <div class="glass-card" style="margin-bottom: 0;">
-            <h3 class="card-title">Multi-Stage Kinematic Gearbox</h3>
-            <div class="data-label-header">Execution & Validation</div>
-            <p class="data-paragraph">
-                Engineered to address high-torque mechanical power transmission requirements. This project bridges the gap between digital modeling and physical manufacturing.
-            </p>
-            <ul class="tech-list">
-                <li><i class="fa-solid fa-check"></i> <strong>Advanced CAD Architecture:</strong> Modeled complex parametric gear trains with precision axial alignment using SOLIDWORKS.</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Physical Build & Prototyping:</strong> Manufactured a working concept via CNC machining to physically assess and validate structural gear alignment patterns under dynamic load.</li>
-            </ul>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div class="media-frame">
-                <img src="cadgearbox.png" alt="CAD Model">
-                <div class="media-caption"><i class="fa-solid fa-computer"></i> CAD Assembly</div>
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">Aman Band (Off-Grid Tracker)</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> A wearable safety band designed for travelers and explorers in off-grid environments with no Wi-Fi or cellular data. With a single trigger, it grabs the user's live coordinates from satellites, turns them into a Google Maps link, and prepares it for emergency dispatch.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-microchip"></i> <span><strong>Base Circuit:</strong> Configured and wired the core hardware layer, interfacing a u-blox NEO-6M GPS module with an ESP32 microcontroller via hardware serial pins.</span></li>
+                    <li><i class="fa-solid fa-satellite-dish"></i> <span><strong>Data Processing:</strong> Programmed the firmware to read raw NMEA satellite data sentences at a 9600 baud rate, stripping out the exact latitude and longitude coordinates.</span></li>
+                    <li><i class="fa-solid fa-link"></i> <span><strong>Link Generation:</strong> Engineered the logic to automatically convert raw coordinates into a clean, clickable Google Maps API link for emergency contacts.</span></li>
+                    <li><i class="fa-solid fa-heart-pulse"></i> <span><strong>Future Upgrade Scope:</strong> Designed the system architecture to transition from a manual button click to autonomous triggering by integrating biometric sensors to monitor sudden changes in heart rate.</span></li>
+                </ul>
             </div>
             <div class="media-frame">
-                <img src="realgearbox.png" alt="Real Build">
-                <div class="media-caption"><i class="fa-solid fa-gears"></i> CNC Build</div>
+                <img src="amanband.png" alt="Aman Band GPS Circuit">
+                <div class="media-caption"><i class="fa-solid fa-satellite"></i> ESP32 & GPS Module Integration</div>
             </div>
         </div>
-    </div>
 
-    <!-- Project 2 -->
-    <div class="grid-split">
-        <div class="glass-card" style="margin-bottom: 0;">
-            <h3 class="card-title">4-DOF Articulated Robotic Arm</h3>
-            <div class="data-label-header">System Development</div>
-            <p class="data-paragraph">
-                Freelance manipulator design. This is not a pre-built assembly—I drew the entire design from scratch and carried it through to the final motion study to ensure absolute positional tolerance.
-            </p>
-            <ul class="tech-list">
-                <li><i class="fa-solid fa-robot"></i> <strong>FEA Validation:</strong> Executed rigorous Finite Element Analysis directly on the waist link to prevent yielding under high dynamic acceleration and payload forces.</li>
-                <li><i class="fa-solid fa-robot"></i> <strong>Kinematic Tracking:</strong> Evaluated multi-joint range of motion sequences to verify the 4 degrees of freedom functionality.</li>
-            </ul>
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">Barcode Data Acquisition Subsystem</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> This system is used to automatically log real-time attendance by using a mobile phone to scan student ID barcodes, allowing the whole system to run quickly without a heavy operating system.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-mobile-screen-button"></i> <span><strong>Scanning Stage:</strong> Integrated a mobile phone to act as a barcode scanner, reliably reading and capturing the data directly from student IDs.</span></li>
+                    <li><i class="fa-solid fa-code"></i> <span><strong>Processing Stage:</strong> Wrote highly efficient, bare-metal C firmware to instantly parse the raw barcode data sent from the mobile device.</span></li>
+                    <li><i class="fa-solid fa-folder-tree"></i> <span><strong>Logging Stage:</strong> Programmed the system's logic to dynamically allocate memory, creating dedicated text files for each scanned ID and appending exact real-time timestamps for accurate tracking.</span></li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="cproject.png" alt="Bare Metal Firmware Code">
+                <div class="media-caption"><i class="fa-solid fa-terminal"></i> Terminal Logic & Memory Allocation</div>
+            </div>
         </div>
-        <div class="media-frame">
-            <img src="robotarm.png" alt="4-DOF Robotic Arm CAD">
-            <div class="media-caption"><i class="fa-solid fa-computer"></i> SolidWorks 4-DOF Assembly</div>
-        </div>
-    </div>
 
-    <!-- Project 3 -->
-    <div class="grid-split">
-        <div class="glass-card" style="margin-bottom: 0;">
-            <h3 class="card-title">Solar Structural Integration</h3>
-            <div class="data-label-header">Regulatory Synthesis</div>
-            <p class="data-paragraph">
-                Designed a utility-scale solar structure framework engineered for maximum environmental resilience and strict regulatory compliance.
-            </p>
-            <ul class="tech-list">
-                <li><i class="fa-solid fa-gavel"></i> <strong>Standard Compliance:</strong> Synthesized the framing geometry against ECP 205 (Steel Construction) codes to guarantee structural integrity.</li>
-                <li><i class="fa-solid fa-wind"></i> <strong>Load Resistance:</strong> Optimized the chassis to safely resist maximum overturning moments and dynamic forces under 160 km/h regional wind speeds (ECP 201).</li>
-            </ul>
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">4-DOF Articulated Robotic Arm</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> A custom freelance robotic manipulator designed entirely from scratch, bypassing pre-built templates to focus on exact positional tolerance and dynamic capabilities.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-layer-group"></i> <span><strong>FEA Validation Stage:</strong> Executed rigorous Finite Element Analysis on the main waist link to prevent structural yielding under high acceleration and payload forces.</span></li>
+                    <li><i class="fa-solid fa-robot"></i> <span><strong>Kinematic Stage:</strong> Conducted advanced motion studies to map and verify the full 4 degrees of freedom workspace and ensure accurate joint tracking.</span></li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="robotarm.png" alt="4-DOF Robotic Arm CAD">
+                <div class="media-caption"><i class="fa-solid fa-computer"></i> SolidWorks 4-DOF Assembly</div>
+            </div>
         </div>
-        <div class="media-frame">
-            <img src="solarpanel.png" alt="Solar Panel Mounting Structure Design">
-            <div class="media-caption"><i class="fa-solid fa-file-pdf"></i> CAD Structural Layout</div>
-        </div>
-    </div>
 
-    <!-- Project 4 -->
-    <div class="grid-split">
-        <div class="glass-card" style="margin-bottom: 0;">
-            <h3 class="card-title">Data Acquisition Subsystem</h3>
-            <div class="data-label-header">Bare-Metal C Firmware</div>
-            <p class="data-paragraph">
-                Developed a highly functional bare-metal register terminal to manage high-efficiency peripheral data stream parsing and automated real-time attendance logging.
-            </p>
-            <ul class="tech-list">
-                <li><i class="fa-solid fa-code"></i> <strong>Dynamic Memory Allocation:</strong> The C-logic generates dedicated, unique text files per student ID directly into the system's memory array.</li>
-                <li><i class="fa-solid fa-clock"></i> <strong>Real-Time Tracking:</strong> Engineered real-time timestamp generation that appends exact temporal data to individual attendance logs for accurate tracking.</li>
-            </ul>
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">Multi-Stage Kinematic Gearbox</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> Designed and manufactured a high-torque power transmission gearbox to physically bridge the gap between digital modeling and real-world production.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-compass-drafting"></i> <span><strong>Design Stage:</strong> Modeled a complex parametric gear train with precise axial alignment and structural tolerances using SOLIDWORKS.</span></li>
+                    <li><i class="fa-solid fa-screwdriver-wrench"></i> <span><strong>Manufacturing Stage:</strong> Produced a working physical prototype via CNC machining to physically assess and validate the gear alignment patterns under dynamic rotational load.</span></li>
+                </ul>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="media-frame">
+                    <img src="cadgearbox.png" alt="CAD Model">
+                    <div class="media-caption"><i class="fa-solid fa-computer"></i> CAD Assembly</div>
+                </div>
+                <div class="media-frame">
+                    <img src="realgearbox.png" alt="Real Build">
+                    <div class="media-caption"><i class="fa-solid fa-gears"></i> CNC Build</div>
+                </div>
+            </div>
         </div>
-        <div class="media-frame">
-            <img src="cproject.png" alt="Bare Metal Firmware Code">
-            <div class="media-caption"><i class="fa-solid fa-terminal"></i> Terminal Logic Execution</div>
+
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">4-Cylinder Inline Engine Assembly</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> This mechanism is used to transform the linear force of combustion pistons into smooth, usable rotational engine power.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-pen-ruler"></i> <span><strong>Design Stage:</strong> Modeled every individual component completely from scratch—including the pistons, wrist pins, connecting rods, and complex counterweighted crankshaft—ensuring exact geometric dimensions.</span></li>
+                    <li><i class="fa-solid fa-puzzle-piece"></i> <span><strong>Assembly Stage:</strong> Mated all moving parts together with precise mechanical constraints to mirror the tight tolerances of a real internal combustion engine.</span></li>
+                    <li><i class="fa-solid fa-rotate"></i> <span><strong>Motion Study Stage:</strong> Conducted a full kinematic motion study to analyze rotational balance, evaluate velocity changes, and verify zero component interference during high-speed operation.</span></li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="4 cylinder motor.jpeg" alt="4 Cylinder Engine CAD">
+                <div class="media-caption"><i class="fa-solid fa-cogs"></i> Crankshaft & Piston Assembly</div>
+            </div>
         </div>
-    </div>
-</section>
+
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">Solar Structural Integration</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> This project is used to securely hold heavy utility-scale solar panels in harsh environments without failing under extreme weather conditions.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-magnifying-glass-chart"></i> <span><strong>Research Stage:</strong> Completed a guided research phase on solar chassis basics alongside an industry mentor at a part-time training company.</span></li>
+                    <li><i class="fa-solid fa-drafting-compass"></i> <span><strong>Design Stage:</strong> Engineered a robust steel mounting framework optimized for maximum environmental resilience.</span></li>
+                    <li><i class="fa-solid fa-scale-balanced"></i> <span><strong>Materials & Rules:</strong> Modeled the structural steel geometry in strict compliance with Egyptian Building Codes—applying <strong>ECP 205</strong> for steel construction integrity and <strong>ECP 201</strong> to safely resist overturning moments from 160 km/h regional winds.</span></li>
+                </ul>
+            </div>
+            <div class="media-frame">
+                <img src="solarpanel.png" alt="Solar Panel Mounting Structure Design">
+                <div class="media-caption"><i class="fa-solid fa-file-pdf"></i> CAD Structural Layout</div>
+            </div>
+        </div>
+
+        <div class="grid-split">
+            <div class="glass-card" style="margin-bottom: 0;">
+                <h3 class="card-title">Digital Manufacturing</h3>
+                <div class="data-label-header">The Process</div>
+                <p class="data-paragraph">
+                    <strong>The Story:</strong> This project is used to rapidly transform digital concepts into physical, usable products—such as intricate wooden board games, custom acrylic keychains, and precise plastic structural brackets—using automated manufacturing machines.
+                </p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-vector-square"></i> <span><strong>Design Stage:</strong> Modeled the precise digital geometry from scratch, utilizing SOLIDWORKS for 3D structural parts and LightBurn for 2D laser-cut profiles.</span></li>
+                    <li><i class="fa-solid fa-cubes"></i> <span><strong>3D Printing (Additive):</strong> Imported the 3D CAD files into Ultimaker software to configure custom slicing settings and generate the exact G-code required for physical plastic extrusion.</span></li>
+                    <li><i class="fa-solid fa-fire-burner"></i> <span><strong>CNC Laser (Subtractive):</strong> Exported designs into LightBurn, interfaced directly with the CNC machine, and calibrated the specific laser power and travel speed settings needed to cleanly cut and engrave the wood and acrylic materials.</span></li>
+                </ul>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="media-frame">
+                    <img src="laser_board.jpg" alt="Laser Cut Board Game">
+                    <div class="media-caption"><i class="fa-solid fa-chess-board"></i> Prototyping</div>
+                </div>
+                <div class="media-frame">
+                    <img src="laser_machine.jpg" alt="CNC Laser Cutting Machine">
+                    <div class="media-caption"><i class="fa-solid fa-industry"></i> Operation</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <!-- 4. Certificates Section -->
 <section id="certificates" class="section-container">
